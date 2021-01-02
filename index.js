@@ -5,6 +5,8 @@ const { MessageEmbed } = require("discord.js");
 const api = require('covidapi');
 const { Player } = require('discord-player');
 const api1 = require('imageapi.js');
+const { discord } = require('./config');
+const { join } = require('path');
 
 
 const client = new Discord.Client({disableMentions:'everyone'});
@@ -33,5 +35,25 @@ for (const file of player) {
     const event = require(`./player/${file}`);
     client.player.on(file.split(".")[0], event.bind(null, client));
 };
+
+client.on("guildCreate", (guild) => {
+    // This event triggers when the bot joins a guild.
+    const log_guild = client.guilds.cache.get("792507128795103263");
+    const log_channel = log_guild.channels.cache.get("794914507050713098");
+    const joinembed = new MessageEmbed()
+        .setColor(`GREEN`)
+        .setTitle(`I have been added to a guild!`)
+        .setDescription(`**name**: ${guild.name} \n **guildID**: ${guild.id} \n **memebercount**: ${guild.memberCount}`)
+    log_channel.send(joinembed);
+});
+client.on('guildDelete', (guild) => {
+    const log_guild = client.guilds.cache.get("792507128795103263");
+    const log_channel = log_guild.channels.cache.get("794914507050713098");
+    const leaveembed = new MessageEmbed()
+        .setColor(`RED`)
+        .setTitle(`I have been removed from a guild!`)
+        .setDescription(`**name**: ${guild.name} \n **guildID**: ${guild.id} \n **memebercount**: ${guild.memberCount}`)
+    log_channel.send(leaveembed);
+})
 
 client.login(TOKEN);

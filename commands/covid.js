@@ -18,6 +18,7 @@ module.exports = {
             .addField("deaths:", data.deaths, true)
             .addField("recovered:", data.recovered, true)
             .setDescription(`well wishes from the CydBot team😷`)
+            .setFooter("note: if new cases are 0, the new cases report hasn't come in yet")
             .setTimestamp()
             message.channel.send(covidembed)
     }
@@ -39,6 +40,7 @@ module.exports = {
         .addField("deaths:", countrydata.deaths, true)
         .addField("recovered:", countrydata.recovered, true)
         .setDescription(`well wishes from the CydBot team😷`)
+        .setFooter("note: if new cases are 0, the new cases report hasn't come in yet")
         .setTimestamp()
         message.channel.send(countryembed)
     }

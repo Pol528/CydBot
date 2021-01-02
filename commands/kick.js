@@ -1,3 +1,5 @@
+const { MessageEmbed } = require("discord.js");
+
 module.exports = {
     name: 'kick',
     description: 'kick a member',
@@ -21,14 +23,13 @@ module.exports = {
         // Now, time for a swift kick in the nuts!
         await member.kick(reason)
           .catch(error => message.reply(`${message.author}, there was an error: ${error}`));
-
-          const success = new MessageEmbed()
-      .setTitle('Success!')
-      .setDescription(`Member kicked!`)
-      .addField(`member:`, `${member.user.tag}`)
-      .addField(`with reason:`, `${reason}`)
-      .addField(`kicked by:`, `${message.author.tag}`)
-      .setColor(`GREEN`)
-      .setTimestamp()
-        message.reply(success);
+    const success_1 = new MessageEmbed()
+        .setTitle('Success!')
+        .setDescription(`Member kicked!`)
+        .addField(`member:`, `${member.user.tag}`)
+        .addField(`with reason:`, `${reason}`)
+        .addField(`kicked by:`, `${message.author.tag}`)
+        .setColor(`GREEN`)
+        .setTimestamp()
+        message.channel.send(success_1);
     }}

@@ -19,6 +19,7 @@ module.exports = {
             if(!bUser) return
             message.guild.members.unban(bUser.user)
             const unbanembed = new MessageEmbed()
+              .setColor(`GREEN`)
               .setDescription(`✅ - <@${userID}> was unbanned!`)
             message.channel.send(unbanembed)
       })

@@ -13,7 +13,7 @@ module.exports = {
             .addField('Cydbot profile picture:', 'stole it from somewhere, if you are the creator please dm Pol528#6969!')
             .addField("got help from:", "Grav#6969, discord.js discord server and stackoverflow.com")
             .addField('inspiration:', "Grav#6969 and GravBot#7521😊")
-            .addField('libraries used:', "discord.js, fs, covidapi, discord-player, imageapi.js")
+            .addField('libraries used:', "discord.js, fs, covidapi, discord-player, imageapi.js, mongoose")
             .setFooter('hello from Romania!')
         message.channel.send(credit_embed)
     }}

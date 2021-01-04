@@ -1,12 +1,15 @@
 const Discord = require('discord.js')
 const fs = require('fs')
-const { prefix, TOKEN} = require('./config.json');
+const { TOKEN} = require('./config.json');
 const { MessageEmbed } = require("discord.js");
 const api = require('covidapi');
 const { Player } = require('discord-player');
 const api1 = require('imageapi.js');
 const { discord } = require('./config');
 const { join } = require('path');
+const mongoose = require('mongoose')
+const Prefix = require('./models/prefix');
+const prefix = require('./models/prefix');
 
 
 const client = new Discord.Client({disableMentions:'everyone'});
@@ -15,6 +18,10 @@ client.config = require('./config');
 client.emotes = client.config.emojis;
 client.filters = client.config.filters;
 client.commands = new Discord.Collection();
+mongoose.connect('mongodb+srv://Pol:OXiWFLE8Cs0PI7L7@cluster1.eaomb.mongodb.net/test', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+});
 
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 for (const file of commandFiles) {
@@ -54,6 +61,41 @@ client.on('guildDelete', (guild) => {
         .setTitle(`I have been removed from a guild!`)
         .setDescription(`**name**: ${guild.name} \n **guildID**: ${guild.id} \n **memebercount**: ${guild.memberCount}`)
     log_channel.send(leaveembed);
+})
+client.on('message', async (message) => {
+
+    if(message.author.bot) return;
+    if(message.channel.type === 'dm') return message.reply('CydBot doesn\'t currently support dm commands. Please use this command in a server');
+    //prefix:
+    const data = await Prefix.findOne({
+        GuildID: message.guild.id
+    });
+    var prefix_1 = 'tati'
+    if(data) {
+        prefix_1 = data.Prefix;
+    } else if (!data) {
+        //set the default prefix here
+        prefix_1 = ".";
+    }
+    const ping_embed = new MessageEmbed()
+    .setAuthor(client.user.tag, client.user.avatarURL({dynamic : true}))
+    .setTitle(`Hello there!`)
+    .setDescription(`My prefix is \`\`${prefix_1}\`\`, for help type \`\`${prefix_1}help\`\`!`)
+    .setColor(`GREEN`) 
+    if (message.mentions.has(client.user.id)) {
+        message.channel.send(ping_embed);
+};
+
+    if(!message.content.startsWith(prefix_1)) return;
+
+    if (message.content.indexOf(prefix_1) !== 0) return;
+
+    const args = message.content.slice(prefix_1.length).trim().split(/ +/g);
+    const command = args.shift().toLowerCase();
+
+    const cmd = client.commands.get(command) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(command));
+
+    if (cmd) cmd.execute(client, message, args)
 })
 
 client.login(TOKEN);

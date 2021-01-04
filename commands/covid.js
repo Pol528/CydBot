@@ -1,12 +1,29 @@
 const api = require('covidapi');
 const Discord = require('discord.js')
 const { MessageEmbed } = require("discord.js");
+const mongoose = require('mongoose')
+const Prefix = require('../models/prefix');
 
 module.exports = {
     name: 'covid',
     description: 'Covid-19 stats',
     async execute(client, message, args) {
-        if(message.content === '.covid') {
+        mongoose.connect('mongodb+srv://Pol:OXiWFLE8Cs0PI7L7@cluster1.eaomb.mongodb.net/test', {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
+        const data = await Prefix.findOne({
+            GuildID: message.guild.id
+        });
+        var prefix_1 = 'tati'
+        if(data) {
+             prefix_1 = data.Prefix;
+        } else if (!data) {
+            //set the default prefix here
+             prefix_1 = ".";
+        }
+
+        if(message.content === `${prefix_1}covid`) {
             const data = await api.all()
             const covidembed = new MessageEmbed()
             .setTitle('__Covid-19 in the whole world__ 🦠')
@@ -22,8 +39,8 @@ module.exports = {
             .setTimestamp()
             message.channel.send(covidembed)
     }
-    else if(message.content.startsWith(".covid")) {
-        var prefix = "."
+    else if(message.content.startsWith(`${prefix_1}covid`)) {
+        var prefix = prefix_1
         const countrycovid = message.content.slice(prefix.length).split(' ')
         const countrydata = await api.countries({country: countrycovid})
         

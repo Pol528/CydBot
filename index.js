@@ -82,12 +82,11 @@ client.on('message', async (message) => {
     .setTitle(`Hello there!`)
     .setDescription(`My prefix is \`\`${prefix_1}\`\`, for help type \`\`${prefix_1}help\`\`!`)
     .setColor(`GREEN`) 
-    if(message.content.length <= 22) {
-        let to_mention = message.mentions.members.first()
-        if(to_mention.id === '795244697949175828') {
+    if(message.mentions.has(client.user.id)) {
+        if(message.content.length <= 22) {
           message.channel.send(ping_embed)
         }
-      }
+    }
 
     if(!message.content.startsWith(prefix_1)) return;
 
@@ -95,7 +94,6 @@ client.on('message', async (message) => {
 
     const args = message.content.slice(prefix_1.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
-
     const cmd = client.commands.get(command) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(command));
 
     if (cmd) cmd.execute(client, message, args)

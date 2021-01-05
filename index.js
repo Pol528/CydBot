@@ -10,7 +10,7 @@ const { join } = require('path');
 const mongoose = require('mongoose')
 const Prefix = require('./models/prefix');
 const prefix = require('./models/prefix');
-
+const weather = require('weather-js')
 
 const client = new Discord.Client({disableMentions:'everyone'});
 client.player = new Player(client);
@@ -82,11 +82,12 @@ client.on('message', async (message) => {
     .setTitle(`Hello there!`)
     .setDescription(`My prefix is \`\`${prefix_1}\`\`, for help type \`\`${prefix_1}help\`\`!`)
     .setColor(`GREEN`) 
-    if(message.mentions.has(client.user.id)) {
+    let to_mention = message.mentions.members.first()
+    if(to_mention){
+    if(to_mention.id === '780118082073001985') {
         if(message.content.length <= 22) {
-          message.channel.send(ping_embed)
-        }
-    }
+            message.channel.send(ping_embed)}
+    }}
 
     if(!message.content.startsWith(prefix_1)) return;
 

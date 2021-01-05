@@ -37,7 +37,11 @@ module.exports = {
            .addField(`\`\`${prefix_1}settings\`\` ⚙️`, 'configure server settings')
            .addField('need more help?', `[join our support server](https://discord.gg/DF4traRyXx)`)
            .setFooter(`my prefix is \"${prefix_1}\", use \"${prefix_1}prefix [new perfix]\" to change it`)
-        return message.channel.send(help_embed);
+        const beg_embed = new MessageEmbed()
+            .setTitle(`Want to help support CydBot?`)
+            .setDescription(`😊 Please [vote for CydBot on top.gg](https://top.gg/bot/780118082073001985)`)
+            .setColor(12320855)
+        return message.channel.send(help_embed), message.channel.send(beg_embed);
     }
     if(category === 'general')
     {
@@ -55,6 +59,7 @@ module.exports = {
             .addField(`\`\`${prefix_1}userinfo <@user>\`\``, 'shows info about a user')
             .addField(`\`\`${prefix_1}serverinfo\`\``, 'shows info about the server')
             .addField(`\`\`${prefix_1}say [message]\`\``, `say a message`)
+            .addField(`\`\`${prefix_1}weather [city]\`\``, `shows the weather in that city`)
             .addField(`\`\`${prefix_1}credits\`\``, "a list of everyone who helped with this project")
             .addField(`\`\`${prefix_1}inivte\`\``, 'to invite CydBot to your server')
             .addField(`need more help?`, `[join our support server](https://discord.gg/DF4traRyXx)`)

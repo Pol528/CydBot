@@ -82,9 +82,12 @@ client.on('message', async (message) => {
     .setTitle(`Hello there!`)
     .setDescription(`My prefix is \`\`${prefix_1}\`\`, for help type \`\`${prefix_1}help\`\`!`)
     .setColor(`GREEN`) 
-    if (message.mentions.has(client.user.id)) {
-        message.channel.send(ping_embed);
-};
+    if(message.content.length <= 22) {
+        let to_mention = message.mentions.members.first()
+        if(to_mention.id === '795244697949175828') {
+          message.channel.send(ping_embed)
+        }
+      }
 
     if(!message.content.startsWith(prefix_1)) return;
 

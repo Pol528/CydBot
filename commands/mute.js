@@ -1,4 +1,8 @@
-const { MessageEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js');
+const { validate } = require('../models/prefix');
+const redis = require('../redis')
+const Discord = require('discord.js');
+const { resolve } = require('path');
 
 module.exports = {
     name: 'mute',
@@ -44,7 +48,25 @@ module.exports = {
         }
       }
       if(member.roles.cache.has(muterole.id)) return message.channel.send(already)
-      let mutetime = args[1];
+      const mutetime = args[1];
+      let mute_type = args[2]
+      if(mutetime)
+      {
+        //console.log(`ARGS1`)
+        if(args[2])
+        {
+          //console.log(`ARGS2`)
+          const durations = {
+            M: 60000,
+            H: 60000 * 60,
+            D: 60000 * 60 * 24,
+          }
+          //let mute_type = args[2]
+          var seconds = mutetime * durations[mute_type]
+          //console.log(seconds)
+        }
+        else{ return message.channel.send(`${client.emotes.error} - please provide a duration type (M/H/D)`)}
+      }
       if(!mutetime)
       {
       member.roles.add(muterole)
@@ -56,20 +78,10 @@ module.exports = {
       }
       else 
       {
-        //if(!id) return message.reply('there was an error, please try again later!')
         member.roles.add(muterole.id)
-/*
-      let seconds = Math.floor(mutetime / 1000);
-      let minutes = Math.floor(seconds / 60);
-      let hours = Math.floor(minutes / 60);
-      let days = Math.floor(hours / 24);
 
-      seconds %= 60;
-      minutes %= 60;
-      hours %= 24;
-*/
       const sucesss = new MessageEmbed()
-            .setDescription(`${client.emotes.success} - ${member} has been muted for ${mutetime}ms`)
+            .setDescription(`${client.emotes.success} - ${member} has been muted for ${mutetime}${mute_type}`)
             .setColor(`GREEN`)
             .setTimestamp()
       message.channel.send(sucesss)
@@ -77,9 +89,10 @@ module.exports = {
       setTimeout(function(){
         member.roles.remove(muterole.id);
         const sucesss = new MessageEmbed()
-            .setDescription(`${client.emotes.success} - ${member} has been unmuted!`)
+            .setDescription(`${client.emotes.success} - ${member} has been unmuted because their mute has expired!`)
             .setColor(`GREEN`)
             .setTimestamp()
-      }, mutetime);
+        message.channel.send(sucesss)
+      }, seconds);
       }
     }}

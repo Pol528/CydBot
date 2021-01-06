@@ -6,7 +6,8 @@ module.exports = {
     description: 'post a meme',
     async execute(client, message, args) {
   let subreddits = [
-    "dankmemes"
+    "dankmemes",
+    "memes"
   ]
   let subreddit = subreddits[Math.floor(Math.random()*(subreddits.length))]
   let img = await api1(subreddit)

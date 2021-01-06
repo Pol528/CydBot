@@ -23,6 +23,7 @@ mongoose.connect('mongodb+srv://Pol:OXiWFLE8Cs0PI7L7@cluster1.eaomb.mongodb.net/
     useUnifiedTopology: true,
 });
 
+
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
@@ -50,6 +51,7 @@ client.on("guildCreate", (guild) => {
     const joinembed = new MessageEmbed()
         .setColor(`GREEN`)
         .setTitle(`I have been added to a guild!`)
+        .setThumbnail(guild.iconURL({ dynamic: true }))
         .setDescription(`**name**: ${guild.name} \n **guildID**: ${guild.id} \n **memebercount**: ${guild.memberCount}`)
     log_channel.send(joinembed);
 });
@@ -59,6 +61,7 @@ client.on('guildDelete', (guild) => {
     const leaveembed = new MessageEmbed()
         .setColor(`RED`)
         .setTitle(`I have been removed from a guild!`)
+        .setThumbnail(guild.iconURL({ dynamic: true }))
         .setDescription(`**name**: ${guild.name} \n **guildID**: ${guild.id} \n **memebercount**: ${guild.memberCount}`)
     log_channel.send(leaveembed);
 })
@@ -99,5 +102,6 @@ client.on('message', async (message) => {
 
     if (cmd) cmd.execute(client, message, args)
 })
+
 
 client.login(TOKEN);

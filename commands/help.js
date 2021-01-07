@@ -61,6 +61,7 @@ module.exports = {
             .addField(`\`\`${prefix_1}say [message]\`\``, `say a message`)
             .addField(`\`\`${prefix_1}weather [city]\`\``, `shows the weather in that city`)
             .addField(`\`\`${prefix_1}iq <@user>\`\``, `shows a random "IQ" number`)
+            .addField(`\`\`${prefix_1}youtube [video name]\`\``, `show search results from youtube`)
             .addField(`\`\`${prefix_1}credits\`\``, "a list of everyone who helped with this project")
             .addField(`\`\`${prefix_1}inivte\`\``, 'to invite CydBot to your server')
             .addField(`need more help?`, `[join our support server](https://discord.gg/DF4traRyXx)`)

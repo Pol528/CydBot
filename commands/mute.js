@@ -1,6 +1,5 @@
 const { MessageEmbed } = require('discord.js');
 const { validate } = require('../models/prefix');
-const redis = require('../redis')
 const Discord = require('discord.js');
 const { resolve } = require('path');
 

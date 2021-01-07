@@ -81,7 +81,7 @@ module.exports = {
             .addField(`\`\`${prefix_1}unmute [@member]\`\``, `unmute a muted member`)
             .addField(`\`\`${prefix_1}purge [2-100]\`\``, `deletes messages`)
             .addField(`\`\`${prefix_1}warn [user]\`\``, `warn a user`)
-            .addField(`\`\`${prefix_1}warnings [user]\`\``, `see all the warnings a user has`)
+            .addField(`\`\`${prefix_1}warnings [user]\`\``,`see all warnings that a user has` )
             .addField('need more help?', `[join our support server](https://discord.gg/DF4traRyXx)`)
             .setFooter('arguments: <optional>, [mandatory]')
         return message.channel.send(moderation_help_embed);

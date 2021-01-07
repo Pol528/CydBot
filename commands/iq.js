@@ -6,7 +6,7 @@ module.exports = {
     async execute(client, message, args) {
 
 
-    let iq = Math.floor(Math.random() * 100);
+    let iq = Math.floor(Math.random() * 150);
     const memeber = message.mentions.members.first()
     if(!memeber){
     const embed = new MessageEmbed()

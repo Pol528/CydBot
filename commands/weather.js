@@ -16,7 +16,7 @@ module.exports = {
         
         weather.find({search: args.join(" "), degreeType: 'C'}, function(err, result) {
           
-        if(result.length === 0){
+        if(!result){
             let errorembed = new Discord.MessageEmbed()
             .setTitle("Error")
             .setDescription(":warning: - Please enter a vaild location!")

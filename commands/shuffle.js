@@ -22,6 +22,7 @@ module.exports = {
 
         const shuffle_embed = new MessageEmbed()
             .setTitle('Shuffle')
+            .setColor(`GREEN`)
             .setDescription(`${client.emotes.success} - Queue shuffled **${client.player.getQueue(message).tracks.length}** song(s) !`)
 
         return message.channel.send(shuffle_embed);

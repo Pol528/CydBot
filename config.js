@@ -1,3 +1,5 @@
+const mongoose = require('mongoose')
+
 module.exports = {
     emojis: {
         off: ':x:',
@@ -8,7 +10,7 @@ module.exports = {
     },
     discord: {
         //token: 'TOKEN',
-        //prefix: '.',
+        //prefix: prefix_1,
         //activity: 'ACTIVITY',
     },
 

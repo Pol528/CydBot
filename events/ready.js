@@ -13,5 +13,14 @@ module.exports = async (client) => {
 		});	
 	}
 
-    client.user.setActivity(`.help in ${client.guilds.cache.size} guilds!`, { type: 'LISTENING' });
+	client.user.setActivity(`.help in ${client.guilds.cache.size} guilds!`, { type: 'LISTENING' });
+	function pula(){
+		client.user.setActivity(`.help in ${client.guilds.cache.size} guilds!`, { type: 'LISTENING' });	
+	}
+	client.on("guildCreate", (guild) => {
+		pula()
+	})
+	client.on('guildDelete', (guild) => {
+		pula()
+	})
 };

@@ -1,10 +1,30 @@
+const mongoose = require('mongoose')
+const Prefix = require('../models/prefix');
+
 module.exports = {
     name: 'w-filters',
     aliases: ['filters'],
     category: 'Music',
     utilisation: '{prefix}w-filters',
+    
 
-    execute(client, message) {
+    async execute(client, message) {
+
+        mongoose.connect('mongodb+srv://Pol:OXiWFLE8Cs0PI7L7@cluster1.eaomb.mongodb.net/test', {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    });
+    const data = await Prefix.findOne({
+        GuildID: message.guild.id
+    });
+    var prefix_1 = 'tati'
+    if(data) {
+         prefix_1 = data.Prefix;
+    } else if (!data) {
+        //set the default prefix here
+         prefix_1 = ".";
+    }
+
         if (!message.member.voice.channel) return message.channel.send(`${client.emotes.error} - You're not in a voice channel !`);
 
         if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) return message.channel.send(`${client.emotes.error} - You are not in the same voice channel !`);
@@ -21,13 +41,13 @@ module.exports = {
         message.channel.send({
             embed: {
                 color: 'ORANGE',
-                footer: { text: 'This bot uses a Github project made by Zerio (ZerioDev/Music-bot)' },
+                footer: { text: 'Thank you to Zerio for the music part of CydBot' },
                 fields: [
                     { name: 'Filters', value: filtersStatuses[0].join('\n'), inline: true },
                     { name: '** **', value: filtersStatuses[1].join('\n'), inline: true },
                 ],
                 timestamp: new Date(),
-                description: `List of all filters enabled or disabled.\nUse \`${client.config.discord.prefix}filter\` to add a filter to a song.`,
+                description: `List of all filters enabled or disabled.\nUse \`${prefix_1}filter\` to add a filter to a song.`,
             },
         });
     },

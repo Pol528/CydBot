@@ -7,7 +7,7 @@ module.exports = {
     async execute(client, message, args) {
         if(args.length === 0){
             let errorembed = new Discord.MessageEmbed()
-            .setTitle("Error :cry:")
+            .setTitle("Error")
             .setDescription(":warning: - Please enter a location!")
             .setColor("YELLOW")
             .setTimestamp()
@@ -15,8 +15,7 @@ module.exports = {
         }
         
         weather.find({search: args.join(" "), degreeType: 'C'}, function(err, result) {
-          
-        if(!result){
+        if(!result.length){
             let errorembed = new Discord.MessageEmbed()
             .setTitle("Error")
             .setDescription(":warning: - Please enter a vaild location!")
@@ -25,17 +24,17 @@ module.exports = {
           return message.channel.send(errorembed);
         }
         
+        if (err) {
+          let errorembed = new Discord.MessageEmbed()
+          .setTitle("Error")
+          .setDescription(":warning: - Please enter a vaild location!")
+          .setColor("FF5757")
+          .setTimestamp()
+          return message.channel.send(errorembed);
+        }
+        
           var current = result[0].current;
           var location = result[0].location;
-            if (err) {
-            let errorembed = new Discord.MessageEmbed()
-            .setTitle("Error")
-            .setDescription(":warning: - Please enter a vaild location!")
-            .setColor("FF5757")
-            .setTimestamp()
-          return message.channel.send(errorembed);
-            }
-        
             
             let embed = new Discord.MessageEmbed()
             .setDescription(`**${current.skytext}**`)

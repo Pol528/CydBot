@@ -38,7 +38,7 @@ else{
     .setTitle("8Ball")
     .setColor(`RANDOM`)
     .addField("question: ", `${question}\n`)
-    .addField("my aanswer:", answer)
+    .addField("my answer:", answer)
     .setThumbnail("https://cdn.discordapp.com/attachments/667751701843017729/779251275988205608/hiclipart.png")
     .setFooter(`${message.author.tag}`, `${message.author.avatarURL({dynamic : true})}` )
   message.channel.send(Embed)

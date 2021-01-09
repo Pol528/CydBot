@@ -6,6 +6,7 @@ module.exports = {
     name: 'serverinfo',
     description: 'shows info about the server',
     async execute(client, message, args) {
+      console.log(`0`)
       //emojis:
       const boostemoji = client.emojis.cache.get("797174231904288778")
       const voiceemoji = client.emojis.cache.get("797174231330848808")
@@ -15,8 +16,9 @@ module.exports = {
       const baneemoji = client.emojis.cache.get("797174231141842964")
       const botemoji = client.emojis.cache.get("797180009227223130")
 
-      message.guild.members.fetch({ withPresences: true})
-
+       message.guild.members.fetch({cache: true})
+      await message.guild.members.fetch(message.guild.ownerID) // Fetches owner
+      .then(guildMember => owner = guildMember)
 
       let onlinemembers = message.guild.members.cache.filter(member => member.presence.status !== "offline").size
       let offflinemembes = message.guild.members.cache.filter(member => member.presence.status == "offline").size
@@ -53,7 +55,7 @@ module.exports = {
         { name: `Server ID`, value: `\`\`${message.guild.id}\`\``, inline: false },
         { name: `Region`, value: `\`\`${message.guild.region}\`\``, inline: true },
         { name: `Verification Level`, value: `\`\`${verifyLevel}\`\``, inline: true },
-        { name: `Server Owner`, value: `${message.guild.owner} [\`\`${message.guild.owner.id}\`\`]`, inline: true },
+        { name: `Server Owner`, value: `<@${owner.id}> [\`\`${owner.id}\`\`]`, inline: true },
         { name: `Channels [\`\`${textChans + voiceChans + catCount}\`\`]`, value: `Categories: \`\`${catCount}\`\`\n\n${textemoji}Text: \`\`${textChans}\`\`\n${voiceemoji}Voice: \`\`${voiceChans}\`\``, inline: true },
         { name: `Members`, value: `\`\`${message.guild.memberCount}\`\`\n\n${onlineemoji}online: \`\`${onlinemembers}\`\`\n ${offlineemoji}offline: \`\`${offflinemembes}\`\`\n${botemoji}bots: \`\`${botcount}\`\`\n **Bans:**\n${baneemoji}\`\`${banCount.size}\`\``, inline: true },
         { name: `Roles[\`\`${message.guild.roles.cache.size}\`\`]`, value: rolemap, inline: true },

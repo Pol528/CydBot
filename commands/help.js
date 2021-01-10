@@ -83,6 +83,7 @@ module.exports = {
                 .addField(`\`\`${prefix_1}cat\`\``, `posts a random cat picture`)
                 .addField(`\`\`${prefix_1}dog\`\``, `posts a random dog picture`)
                 .addField(`\`\`${prefix_1}credits\`\``, "a list of everyone who helped with this project")
+                .addField(`\`\`${prefix_1}vote\`\`` , `a list of all the sites where you can vote for CydBot`)
                 .addField(`\`\`${prefix_1}inivte\`\``, 'to invite CydBot to your server')
                 .addField(`need more help?`, `[join our support server](https://discord.gg/DF4traRyXx)`)
                 .setFooter('arguments: <optional>, [mandatory]'),
@@ -185,6 +186,7 @@ module.exports = {
                 .addField(`\`\`${prefix_1}cat\`\``, `posts a random cat picture`)
                 .addField(`\`\`${prefix_1}dog\`\``, `posts a random dog picture`)
                 .addField(`\`\`${prefix_1}credits\`\``, "a list of everyone who helped with this project")
+                .addField(`\`\`${prefix_1}vote\`\`` , `a list of all the sites where you can vote for CydBot`)
                 .addField(`\`\`${prefix_1}inivte\`\``, 'to invite CydBot to your server')
                 .addField(`need more help?`, `[join our support server](https://discord.gg/DF4traRyXx)`)
                 .setFooter('arguments: <optional>, [mandatory]')

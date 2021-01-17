@@ -179,7 +179,7 @@ module.exports = {
                 .addField(`\`\`${prefix_1}8ball [question]\`\``, 'answers a yes/no question')
                 .addField(`\`\`${prefix_1}userinfo <@user>\`\``, 'shows info about a user')
                 .addField(`\`\`${prefix_1}serverinfo\`\``, 'shows info about the server')
-                .addField(`\`\`${prefix_1}say [message]\`\``, `say a message`)
+                .addField(`\`\`${prefix_1}say [message]\`\` - temporarily disabled`, `say a message`)
                 .addField(`\`\`${prefix_1}weather [city]\`\``, `shows the weather in that city`)
                 .addField(`\`\`${prefix_1}iq <@user>\`\``, `shows a random "IQ" number`)
                 .addField(`\`\`${prefix_1}youtube [video name]\`\``, `show search results from youtube`)

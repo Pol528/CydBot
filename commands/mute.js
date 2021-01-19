@@ -57,14 +57,16 @@ module.exports = {
           //console.log(`ARGS2`)
           const durations = {
             M: 60000,
-            H: 60000 * 60,
-            D: 60000 * 60 * 24,
+            H: 60000 * 60
+        }
+          if(args[2] !== 'M') 
+          {
+            if(args[2] !== 'H'){ return message.reply(`that isn't a valid duration type, please use (M/H)`)}
           }
-          //let mute_type = args[2]
           var seconds = mutetime * durations[mute_type]
           //console.log(seconds)
         }
-        else{ return message.channel.send(`${client.emotes.error} - please provide a duration type (M/H/D)`)}
+        else{ return message.channel.send(`${client.emotes.error} - please provide a duration type (M/H)`)}
       }
       if(!mutetime)
       {
@@ -86,12 +88,16 @@ module.exports = {
       message.channel.send(sucesss)
         //removing role:
       setTimeout(function(){
+        if(member.roles.cache.has(muterole))
+        {
         member.roles.remove(muterole.id);
         const sucesss = new MessageEmbed()
             .setDescription(`${client.emotes.success} - ${member} has been unmuted because their mute has expired!`)
             .setColor(`GREEN`)
             .setTimestamp()
         message.channel.send(sucesss)
+        }
+        else{ return }
       }, seconds);
       }
     }}

@@ -13,6 +13,7 @@ module.exports = {
         }
           
           let userID = args[0]
+          if(!userID) { return message.reply(`you need to thell me who's id to unban!`)}
             message.guild.fetchBans().then(bans=> {
             if(bans.size == 0) return 
             let bUser = bans.find(b => b.user.id == userID)

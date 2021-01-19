@@ -13,12 +13,16 @@ module.exports = {
         return message.reply('I do not have permissions, please contact an administrator');
       }
       let muterole = message.guild.roles.cache.find(role => role.name === "muted");
-      if(!muterole) return message.reply('that user isn\'t muted!')
+      if(member.roles.cache.find(r => r.name === "muted"))
+      {
       member.roles.remove(muterole.id)
       const sucesss = new MessageEmbed()
             .setDescription(`${client.emotes.success} - ${member} has been unmuted!`)
             .setColor(`GREEN`)
             .setTimestamp()
       message.channel.send(sucesss)
-      
+      }
+      else{
+        return message.reply('that user isn\'t muted!')
+      }
     }}

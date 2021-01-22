@@ -96,8 +96,31 @@ module.exports = {
             .setColor(`GREEN`)
             .setTimestamp()
         message.channel.send(sucesss)
+        const unbanembed_3  = new MessageEmbed()
+      .setAuthor("CydBot", "https://cdn.discordapp.com/avatars/780118082073001985/bef69073cf780761ab8ea29af911a128.webp")
+      .setColor(`GREEN`)
+      .setDescription(`Your were unmuted on \`\`${message.guild.name}\`\` because your mute time has expired!`)
+      .setTimestamp()
+      member.send(unbanembed_3)
         }
         else{ return }
       }, seconds);
+      }
+      if(!mutetime)
+      {
+      const unbanembed_1  = new MessageEmbed()
+      .setAuthor("CydBot", "https://cdn.discordapp.com/avatars/780118082073001985/bef69073cf780761ab8ea29af911a128.webp")
+      .setColor(`YELLOW`)
+      .setDescription(`You were indefinitely muted on \`\`${message.guild.name}\`\` by \`\`${message.author.tag}\`\`!`)
+      .setTimestamp()
+      member.send(unbanembed_1)
+      }
+      else {
+        const unbanembed_2  = new MessageEmbed()
+      .setAuthor("CydBot", "https://cdn.discordapp.com/avatars/780118082073001985/bef69073cf780761ab8ea29af911a128.webp")
+      .setColor(`YELLOW`)
+      .setDescription(`You were muted on \`\`${message.guild.name}\`\` by \`\`${message.author.tag}\`\`for \`\`${mutetime}${mute_type}\`\`!`)
+      .setTimestamp()
+      member.send(unbanembed_2)
       }
     }}

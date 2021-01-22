@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { MessageEmbed, Guild } = require("discord.js");
 
 module.exports = {
     name: 'ban',
@@ -31,5 +31,10 @@ module.exports = {
       .setColor(`GREEN`)
       .setTimestamp()
     message.channel.send(success);
-    //message.reply(`this member was banned from the server: ${member.user.tag}, because: ${reason}`);
+    const banembed  = new MessageEmbed()
+      .setAuthor("CydBot", "https://cdn.discordapp.com/avatars/780118082073001985/bef69073cf780761ab8ea29af911a128.webp")
+      .setColor(`RED`)
+      .setDescription(`You were banned from \`\`${message.guild.name}\`\` by \`\`${message.author.tag}\`\` for \`\`${reason}\`\`!`)
+      .setTimestamp()
+    member.send(banembed)
     }}

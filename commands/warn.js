@@ -30,6 +30,7 @@ module.exports = {
         mongoose.connect('mongodb+srv://Pol:OXiWFLE8Cs0PI7L7@cluster1.eaomb.mongodb.net/test', {
             useNewUrlParser: true,
             useUnifiedTopology: true,
+            useFindAndModify: true
         });
 
                 await warnschema.findOneAndUpdate({
@@ -52,4 +53,23 @@ module.exports = {
                 .setColor(`GREEN`)
                 .setTimestamp()
             message.channel.send(warnembed)
+            const results = await warnschema.findOne({
+                guildID: message.guild.id,
+                userId: target.id
+                
+            })
+            
+            let reply = ``
+            for (const warning of results.warnings) {
+                const{ author, timestamp, reason } = warning
+                 reply += `•By ${author} on ${new Date(timestamp).toLocaleDateString()} for "${reason}"\n`
+            }
+            if(reply === ``){ reply = `none`}
+        const dmembed = new MessageEmbed()
+        .setAuthor("CydBot", "https://cdn.discordapp.com/avatars/780118082073001985/bef69073cf780761ab8ea29af911a128.webp")
+        .setColor(`YELLOW`)
+        .setDescription(`You were warned on \`\`${message.guild.name}\`\` by \`\`${message.author.tag}\`\` for \`\`${reason}\`\`!`)
+        .addField(`previous warings in \`\`${message.guild.name}\`\`:`, `${reply}`)
+        .setTimestamp()   
+            target.send(dmembed)
     }}

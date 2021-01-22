@@ -23,5 +23,11 @@ module.exports = {
               .setColor(`GREEN`)
               .setDescription(`✅ - <@${userID}> was unbanned!`)
             message.channel.send(unbanembed)
+            const unbanembed_1  = new MessageEmbed()
+      .setAuthor("CydBot", "https://cdn.discordapp.com/avatars/780118082073001985/bef69073cf780761ab8ea29af911a128.webp")
+      .setColor(`GREEN`)
+      .setDescription(`You were unbanned from \`\`${message.guild.name}\`\` by \`\`${message.author.tag}\`\`!`)
+      .setTimestamp()
+      client.users.cache.get(userID).send(unbanembed_1);
       })
     }}

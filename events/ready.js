@@ -12,6 +12,7 @@ module.exports = async (client) => {
 			console.log(` -${guild.name}`);
 		});	
 	}
+	console.log("Made by Pol528 - https://github.com/Pol528/CydBot")
 
 	client.user.setActivity(`.help in ${client.guilds.cache.size} guilds!`, { type: 'LISTENING' });
 	function pula(){

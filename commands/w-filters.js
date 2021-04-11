@@ -10,7 +10,7 @@ module.exports = {
 
     async execute(client, message) {
 
-        mongoose.connect('mongodb+srv://Pol:OXiWFLE8Cs0PI7L7@cluster1.eaomb.mongodb.net/test', {
+        mongoose.connect('YOUR MONGODB CONNECTION HERE', {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     });

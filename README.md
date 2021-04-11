@@ -21,7 +21,33 @@ A multifunctional [discord.js](https://discord.js.org/#/) v12 BOT🤖!
 
 - put your BOT's token
 
+#### `commands/covid.js`:
+
+- in line `11` put your MongoDB auth
+
+#### `commands/help.js`:
+
+- in line `11` put your MongoDB auth
+
+#### `commands/settings.js`:
+
+- in line `9` put your MongoDB auth
+
+#### `commands/w-filters.js`:
+
+- in line `13` put your MongoDB auth
+
+#### `commands/warn.js`:
+
+- in line `30` put your MongoDB auth
+
+#### `commands/warnings.js`:
+
+- in line `14` put your MongoDB auth
+
 ## 🌟Starting your BOT:
+
+- in line `21` put your MongoDB auth
 
 - open a terminal and type:
 

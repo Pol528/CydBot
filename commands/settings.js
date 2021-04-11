@@ -6,7 +6,7 @@ module.exports = {
     name: 'settings',
     description: 'settings menu',
     async execute(client, message, args) {
-        mongoose.connect('mongodb+srv://Pol:OXiWFLE8Cs0PI7L7@cluster1.eaomb.mongodb.net/test', {
+        mongoose.connect('YOUR MONGODB CONNECTION HERE', {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
